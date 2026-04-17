@@ -1,0 +1,70 @@
+<header class="site-header">
+	<div class="logo-wrap">
+		<span class="logo-mark"></span>
+		<strong>Redirect Lab</strong>
+	</div>
+	<nav class="site-nav">
+		<a href="/">Home</a>
+		<a href="/forms">Form Lab</a>
+		<a href="/journey">Journey</a>
+		<a href="/flaky">Flaky Lab</a>
+	</nav>
+</header>
+
+<main>
+	<section class="hero">
+		<p class="eyebrow">Scenario: Redirect Workflows</p>
+		<h1>Automate direct, delayed, and conditional redirects.</h1>
+		<p class="hero-copy">
+			Use this page to assert URL changes, waits, and behavior after navigation events.
+		</p>
+	</section>
+
+	<section class="panel split-panel">
+		<div class="panel-box">
+			<h2>Immediate redirects</h2>
+			<p class="small-note">Useful for validating href and location change assertions.</p>
+			<div class="hero-actions">
+				<a class="btn btn-primary" href="/result?source=anchor-redirect" data-testid="anchor-redirect-link">
+					Go to Result (Anchor)
+				</a>
+				<a class="btn btn-ghost" href="/go?to=/result?source=server-redirect" data-testid="server-redirect-link">
+					Go via /go route
+				</a>
+			</div>
+		</div>
+
+		<div class="panel-box">
+			<h2>Delayed and conditional redirects</h2>
+			<p id="redirectStatus" class="small-note" data-testid="redirect-status">No action triggered yet.</p>
+			<div class="hero-actions">
+				<button
+					id="delayedRedirectBtn"
+					type="button"
+					class="btn btn-primary"
+					data-url="/result?source=delayed-button"
+					data-testid="delayed-redirect-btn"
+				>
+					Redirect after random delay
+				</button>
+				<button id="conditionalRedirectBtn" type="button" class="btn btn-ghost" data-testid="conditional-redirect-btn">
+					Redirect only if ping succeeds
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<section class="panel">
+		<h2>Expected outcomes</h2>
+		<ul class="check-grid">
+			<li>Immediate anchor goes to /result with query source=anchor-redirect.</li>
+			<li>Server redirect goes through /go and lands on /result.</li>
+			<li>Delayed button redirects after random 400-2200ms.</li>
+			<li>Conditional button may fail because /api/flaky/ping can return 500.</li>
+		</ul>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<p>Playwright Practice Platform <%= launchYear %>. Redirect timing scenario.</p>
+</footer>

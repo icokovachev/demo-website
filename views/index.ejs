@@ -1,0 +1,245 @@
+<header class="site-header">
+	<div class="logo-wrap">
+		<span class="logo-mark"></span>
+		<strong>Playwright Practice Platform</strong>
+	</div>
+	<nav class="site-nav">
+		<a href="/forms">Form Lab</a>
+		<a href="/journey">Journey</a>
+		<a href="/redirects">Redirects</a>
+		<a href="/flaky">Flaky Lab</a>
+	</nav>
+</header>
+
+<main>
+	<section class="hero">
+		<p class="eyebrow">Automation Sandbox</p>
+		<h1>Train Playwright against real UI scenarios and intentional instability.</h1>
+		<p class="hero-copy">
+			This site is intentionally built for end-to-end practice: required fields,
+			redirect flows, a multi-step journey, and flaky APIs that fail or delay randomly.
+		</p>
+
+		<div class="hero-metrics">
+			<div>
+				<span>Scenarios</span>
+				<strong>4 core labs</strong>
+			</div>
+			<div>
+				<span>Flaky endpoint</span>
+				<strong>/api/flaky/ping</strong>
+			</div>
+			<div>
+				<span>Journey flow</span>
+				<strong>4 interactive steps</strong>
+			</div>
+		</div>
+
+		<div class="hero-actions">
+			<button id="pulseBtn" data-testid="home-pulse-btn" class="btn btn-primary">
+				Highlight Scenario Grid
+			</button>
+			<a class="btn btn-ghost" href="/journey" data-testid="home-journey-link">Open Journey</a>
+			<a class="btn btn-ghost" href="/iframe" target="_blank" rel="noreferrer">Open Widget Lab</a>
+		</div>
+	</section>
+
+	<section class="panel">
+		<div class="panel-header">
+			<h2>Scenario directory</h2>
+			<span class="chip">API: /api/scenarios</span>
+		</div>
+		<div id="highlightGrid" class="card-grid">
+			<% scenarios.forEach((item) => { %>
+				<article class="card reveal" data-testid="scenario-card">
+					<h3><%= item.title %></h3>
+					<p><%= item.description %></p>
+					<div class="card-meta">
+						<strong><%= item.tags[0] %></strong>
+						<span><%= item.tags[1] %></span>
+					</div>
+					<a class="btn btn-ghost mini-btn" href="<%= item.path %>" data-testid="scenario-open-link">
+						Open Scenario
+					</a>
+				</article>
+			<% }) %>
+		</div>
+	</section>
+
+	<section class="panel split-panel">
+		<div>
+			<h2>Quick test checklist</h2>
+			<p>Mark these checks while writing your Playwright suite.</p>
+			<ul class="check-grid">
+				<li><label><input type="checkbox" class="lab-check" checked />Assert required form errors</label></li>
+				<li><label><input type="checkbox" class="lab-check" />Validate delayed redirect</label></li>
+				<li><label><input type="checkbox" class="lab-check" />Handle intermittent API 500</label></li>
+				<li><label><input type="checkbox" class="lab-check" />Complete journey wizard</label></li>
+			</ul>
+			<div class="progress-wrap" aria-live="polite">
+				<div id="labProgressBar" class="progress-bar"></div>
+			</div>
+			<p id="labProgressLabel" class="small-note">Progress: 1 of 4 labs completed</p>
+		</div>
+		<div class="enroll-form">
+			<h3>Common selectors to practice</h3>
+			<p class="small-note">Use these targets in your test scripts:</p>
+			<ul class="check-grid">
+				<li>#registerForm and #registerSubmitBtn</li>
+				<li>[data-testid="journey-next-btn"]</li>
+				<li>#delayedRedirectBtn</li>
+				<li>#flakyPingBtn and #flakyFeedBtn</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="panel">
+		<h2>Starter Playwright snippet</h2>
+		<div class="code-shell">
+			<pre><code>import { test, expect } from "@playwright/test";
+
+test("required email error appears", async ({ page }) =&gt; {
+  await page.goto("http://localhost:3000/forms");
+  await page.getByTestId("register-submit").click();
+  await expect(page.getByTestId("register-result")).toContainText("Validation failed");
+});</code></pre>
+		</div>
+	</section>
+
+	<section class="panel">
+		<div class="panel-header">
+			<h2>Live route matrix</h2>
+		</div>
+		<div class="table-wrap">
+			<table>
+				<thead>
+					<tr>
+						<th>Route</th>
+						<th>Purpose</th>
+						<th>Notes</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>/forms</td><td>Form validation</td><td>Required + API submit</td></tr>
+					<tr><td>/journey</td><td>Wizard flow</td><td>Step navigation and finish</td></tr>
+					<tr><td>/redirects</td><td>Redirect patterns</td><td>Immediate and delayed</td></tr>
+					<tr><td>/flaky</td><td>Flaky simulations</td><td>Random latency and failures</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<section class="preview panel">
+		<div>
+			<h2>Widget lab</h2>
+			<p>Small iframe target for nested frame selectors and assertions.</p>
+		</div>
+		<iframe title="Playwright widget embed" src="/iframe"></iframe>
+	</section>
+
+	<section class="panel">
+		<h2>FAQ for automation setup</h2>
+		<details class="faq">
+			<summary>How do I make flaky endpoints stable?</summary>
+			<p>Append ?stable=1 to /api/flaky/ping or /api/flaky/feed for deterministic runs.</p>
+		</details>
+		<details class="faq">
+			<summary>Where should I start writing tests?</summary>
+			<p>Start with /forms for deterministic coverage, then move to /flaky for retry strategies.</p>
+		</details>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<p>Playwright Practice Platform <%= launchYear %>. Built to be tested.</p>
+</footer>
+			<label>
+				Name
+				<input type="text" placeholder="Ava Tester" />
+			</label>
+			<label>
+				Experience level
+				<select>
+					<option>Beginner</option>
+					<option>Intermediate</option>
+					<option>Advanced</option>
+				</select>
+			</label>
+			<label>
+				Weekly commitment (hours)
+				<input id="hoursRange" type="range" min="2" max="12" value="6" />
+			</label>
+			<p id="hoursOutput" class="small-note">6h per week</p>
+			<button class="btn btn-primary" type="button">Reserve Seat</button>
+		</form>
+	</section>
+
+	<section class="panel">
+		<h2>Playwright command station</h2>
+		<div class="code-shell">
+			<pre><code>import { test, expect } from "@playwright/test";
+
+test("user can filter products", async ({ page }) =&gt; {
+  await page.goto("https://example.dev/shop");
+  await page.getByRole("textbox", { name: "Search" }).fill("headphones");
+  await expect(page.getByTestId("product-card")).toHaveCount(3);
+});</code></pre>
+		</div>
+	</section>
+
+	<section id="toolbox" class="panel">
+		<div class="panel-header">
+			<h2>Toolbox and outcomes</h2>
+		</div>
+		<div class="table-wrap">
+			<table>
+				<thead>
+					<tr>
+						<th>Skill</th>
+						<th>Tooling</th>
+						<th>Outcome</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Selectors</td>
+						<td>getByRole, locator</td>
+						<td>Stable tests after UI refactors</td>
+					</tr>
+					<tr>
+						<td>Debugging</td>
+						<td>trace viewer, codegen</td>
+						<td>Faster diagnosis for flaky failures</td>
+					</tr>
+					<tr>
+						<td>CI Integration</td>
+						<td>GitHub Actions matrix</td>
+						<td>Reliable checks before merge</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<details class="faq">
+			<summary>How long does the full track take?</summary>
+			<p>Most learners complete it in 4 to 6 weeks with 5 to 8 hours per week.</p>
+		</details>
+		<details class="faq">
+			<summary>Do we cover API mocking and auth state reuse?</summary>
+			<p>Yes. We cover request interception, fixture setup, and storage state patterns.</p>
+		</details>
+	</section>
+
+	<section id="preview" class="preview panel">
+		<div>
+			<h2>Quick drill preview</h2>
+			<p>
+				Use the embedded drill panel for daily practice prompts and status snapshots.
+			</p>
+		</div>
+		<iframe title="Playwright drill embed" src="/iframe"></iframe>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<p>Playwright Training Hub <%= launchYear %>. Build confidence by testing what matters.</p>
+</footer>

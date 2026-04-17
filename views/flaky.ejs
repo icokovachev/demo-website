@@ -1,0 +1,78 @@
+<header class="site-header">
+	<div class="logo-wrap">
+		<span class="logo-mark"></span>
+		<strong>Flaky Lab</strong>
+	</div>
+	<nav class="site-nav">
+		<a href="/">Home</a>
+		<a href="/forms">Form Lab</a>
+		<a href="/journey">Journey</a>
+		<a href="/redirects">Redirects</a>
+	</nav>
+</header>
+
+<main>
+	<section class="hero">
+		<p class="eyebrow">Scenario: Flakiness Simulation</p>
+		<h1>Practice retries, waiting strategies, and resilient assertions.</h1>
+		<p class="hero-copy">
+			This page intentionally introduces unstable timing and random API behavior. Use
+			stable mode with ?stable=1 on APIs for deterministic baselines.
+		</p>
+	</section>
+
+	<section class="panel split-panel">
+		<div class="panel-box">
+			<h2>Flaky ping API</h2>
+			<p id="flakyPingStatus" class="small-note" data-testid="flaky-ping-status">Not called yet.</p>
+			<div class="hero-actions">
+				<button id="flakyPingBtn" class="btn btn-primary" type="button" data-testid="flaky-ping-btn">
+					Call /api/flaky/ping
+				</button>
+				<button id="stablePingBtn" class="btn btn-ghost" type="button" data-testid="stable-ping-btn">
+					Call stable ping
+				</button>
+			</div>
+		</div>
+
+		<div class="panel-box">
+			<h2>Random feed API</h2>
+			<p class="small-note">Item order and count can change in flaky mode.</p>
+			<div class="hero-actions">
+				<button id="flakyFeedBtn" class="btn btn-primary" type="button" data-testid="flaky-feed-btn">
+					Load flaky feed
+				</button>
+				<button id="stableFeedBtn" class="btn btn-ghost" type="button" data-testid="stable-feed-btn">
+					Load stable feed
+				</button>
+			</div>
+			<ul id="flakyFeedList" class="feed-list" data-testid="flaky-feed-list"></ul>
+		</div>
+	</section>
+
+	<section class="panel split-panel">
+		<div class="panel-box">
+			<h2>Intermittent banner</h2>
+			<p class="small-note">Banner may or may not appear on each fetch.</p>
+			<button id="bannerCheckBtn" class="btn btn-ghost" type="button" data-testid="banner-check-btn">
+				Check banner state
+			</button>
+			<div id="intermittentBanner" class="intermittent-banner" data-testid="intermittent-banner" hidden>
+				Intermittent banner currently visible.
+			</div>
+		</div>
+
+		<div class="panel-box">
+			<h2>Randomly toggled box</h2>
+			<p class="small-note">This box appears/disappears every 1-3 seconds.</p>
+			<div id="flakyBox" class="flaky-box" data-testid="flaky-box">Sometimes visible target</div>
+			<button id="stopFlakyBoxBtn" class="btn btn-ghost" type="button" data-testid="stop-flaky-box-btn">
+				Stop toggle
+			</button>
+		</div>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<p>Playwright Practice Platform <%= launchYear %>. Flaky behavior intentionally enabled.</p>
+</footer>

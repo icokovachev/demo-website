@@ -1,0 +1,28 @@
+{
+	"name": "demo-website",
+	"version": "1.0.0",
+	"description": "Intentional demo website built with Express and EJS",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js",
+		"dev": "node --watch server.js",
+		"docker:build": "docker build -t demo-web:local .",
+		"docker:run": "docker run --rm -p 3000:3000 --name demo-web demo-web:local",
+		"k8s:apply": "kubectl apply -k k8s",
+		"k8s:delete": "kubectl delete -k k8s"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"keywords": [
+		"express",
+		"ejs",
+		"website"
+	],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"ejs": "^3.1.10",
+		"express": "^4.21.2"
+	}
+}

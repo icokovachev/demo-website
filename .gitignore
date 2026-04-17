@@ -1,0 +1,40 @@
+# Node dependencies
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Coverage and test artifacts
+coverage/
+.nyc_output/
+playwright-report/
+test-results/
+
+# Build/cache outputs
+dist/
+build/
+.cache/
+
+# Editor and OS files
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Runtime files
+tmp/
+.tmp/
+*.pid
+
+# Docker/Kubernetes local artifacts
+*.tar
+.kube/

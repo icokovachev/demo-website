@@ -1,0 +1,40 @@
+<header class="site-header">
+	<div class="logo-wrap">
+		<span class="logo-mark"></span>
+		<strong>Result Target</strong>
+	</div>
+	<nav class="site-nav">
+		<a href="/">Home</a>
+		<a href="/forms">Form Lab</a>
+		<a href="/journey">Journey</a>
+		<a href="/redirects">Redirects</a>
+		<a href="/flaky">Flaky Lab</a>
+	</nav>
+</header>
+
+<main>
+	<section class="hero">
+		<p class="eyebrow">Navigation Landing</p>
+		<h1 data-testid="result-heading">Reached result destination.</h1>
+		<p class="hero-copy">
+			Use this endpoint to assert redirected URL query params and final page content.
+		</p>
+		<div class="hero-metrics">
+			<div>
+				<span>Source</span>
+				<strong id="resultSource" data-testid="result-source"><%= source %></strong>
+			</div>
+			<div>
+				<span>Status</span>
+				<strong id="resultStatus" data-testid="result-status"><%= status %></strong>
+			</div>
+		</div>
+		<div class="hero-actions">
+			<a class="btn btn-primary" href="/redirects" data-testid="back-to-redirects">Back to Redirect Lab</a>
+		</div>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<p>Playwright Practice Platform <%= launchYear %>. Redirect assertion target.</p>
+</footer>

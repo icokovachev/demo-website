@@ -1,0 +1,96 @@
+<header class="site-header">
+	<div class="logo-wrap">
+		<span class="logo-mark"></span>
+		<strong>Form Lab</strong>
+	</div>
+	<nav class="site-nav">
+		<a href="/">Home</a>
+		<a href="/journey">Journey</a>
+		<a href="/redirects">Redirects</a>
+		<a href="/flaky">Flaky Lab</a>
+	</nav>
+</header>
+
+<main>
+	<section class="hero">
+		<p class="eyebrow">Scenario: Mandatory Fields</p>
+		<h1>Test required fields, inline errors, and server-side validation responses.</h1>
+		<p class="hero-copy">
+			This page is ideal for form automation: required inputs, select controls, checkbox consent,
+			and both success and validation failure responses.
+		</p>
+	</section>
+
+	<section class="panel split-panel">
+		<form id="registerForm" class="enroll-form" data-testid="register-form" novalidate>
+			<h2>Registration form</h2>
+			<label>
+				Full name
+				<input name="fullName" type="text" required data-testid="register-fullname" />
+			</label>
+			<label>
+				Email
+				<input name="email" type="email" required data-testid="register-email" />
+			</label>
+			<label>
+				Password
+				<input name="password" type="password" minlength="6" required data-testid="register-password" />
+			</label>
+			<label>
+				Role
+				<select name="role" required data-testid="register-role">
+					<option value="">Choose role</option>
+					<option>QA Engineer</option>
+					<option>SDET</option>
+					<option>Developer</option>
+				</select>
+			</label>
+			<label>
+				<input name="terms" type="checkbox" value="accepted" required data-testid="register-terms" />
+				I accept terms and test data processing.
+			</label>
+			<button id="registerSubmitBtn" type="submit" class="btn btn-primary" data-testid="register-submit">
+				Submit Registration
+			</button>
+			<p id="registerResult" class="small-note" data-testid="register-result">Waiting for submission...</p>
+		</form>
+
+		<div class="panel-box">
+			<h3>Suggested Playwright checks</h3>
+			<ul class="check-grid">
+				<li>Click submit with empty form and assert validation message.</li>
+				<li>Fill all fields and assert JSON success response is shown.</li>
+				<li>Use route interception to verify POST /api/forms/register payload.</li>
+				<li>Assert checkbox must be selected before successful submit.</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="panel">
+		<h2>Secondary simulated form</h2>
+		<form class="inline-form" data-testid="feedback-form">
+			<label>
+				Bug title
+				<input type="text" required data-testid="feedback-title" />
+			</label>
+			<label>
+				Severity
+				<select required data-testid="feedback-severity">
+					<option value="">Select severity</option>
+					<option>P1</option>
+					<option>P2</option>
+					<option>P3</option>
+				</select>
+			</label>
+			<label>
+				Repro steps
+				<textarea required rows="3" data-testid="feedback-steps"></textarea>
+			</label>
+			<button class="btn btn-ghost" type="button" data-testid="feedback-save">Save Draft</button>
+		</form>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<p>Playwright Practice Platform <%= launchYear %>. Form lab is deterministic by default.</p>
+</footer>

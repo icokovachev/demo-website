@@ -1,0 +1,116 @@
+<header class="site-header">
+	<div class="logo-wrap">
+		<span class="logo-mark"></span>
+		<strong>Journey Lab</strong>
+	</div>
+	<nav class="site-nav">
+		<a href="/">Home</a>
+		<a href="/forms">Form Lab</a>
+		<a href="/redirects">Redirect Lab</a>
+		<a href="/flaky">Flaky Lab</a>
+	</nav>
+</header>
+
+<main>
+	<section class="hero">
+		<p class="eyebrow">Multi-step Flow Scenario</p>
+		<h1>Simulate a realistic checkout-like journey with four dependent steps.</h1>
+		<p class="hero-copy">
+			This scenario is designed for end-to-end tests with step transitions, required fields,
+			and a final redirect target you can assert on.
+		</p>
+		<div class="journey-steps" data-testid="journey-stepper">
+			<span class="step-pill is-active" data-step-pill="1">Step 1</span>
+			<span class="step-pill" data-step-pill="2">Step 2</span>
+			<span class="step-pill" data-step-pill="3">Step 3</span>
+			<span class="step-pill" data-step-pill="4">Step 4</span>
+		</div>
+	</section>
+
+	<section class="panel">
+		<h2>Interactive journey form</h2>
+		<form id="journeyForm" data-testid="journey-form" novalidate>
+			<div class="journey-panel is-active" data-step-panel="1">
+				<h3>Step 1: Account</h3>
+				<label>
+					Username
+					<input name="username" type="text" required data-testid="journey-username" />
+				</label>
+				<label>
+					Email
+					<input name="email" type="email" required data-testid="journey-email" />
+				</label>
+			</div>
+
+			<div class="journey-panel" data-step-panel="2">
+				<h3>Step 2: Address</h3>
+				<label>
+					City
+					<input name="city" type="text" required data-testid="journey-city" />
+				</label>
+				<label>
+					Postal code
+					<input name="postal" type="text" required data-testid="journey-postal" />
+				</label>
+			</div>
+
+			<div class="journey-panel" data-step-panel="3">
+				<h3>Step 3: Preferences</h3>
+				<label>
+					Browser
+					<select name="browser" required data-testid="journey-browser">
+						<option value="">Select browser</option>
+						<option>Chromium</option>
+						<option>Firefox</option>
+						<option>WebKit</option>
+					</select>
+				</label>
+				<label>
+					<input name="optin" type="checkbox" required data-testid="journey-optin" />
+					I confirm test data can be stored.
+				</label>
+			</div>
+
+			<div class="journey-panel" data-step-panel="4">
+				<h3>Step 4: Review</h3>
+				<p class="small-note" data-testid="journey-review-note">
+					Click finish to redirect to the result page.
+				</p>
+			</div>
+
+			<p class="error-text" id="journeyError" data-testid="journey-error" hidden>
+				Please complete required fields before continuing.
+			</p>
+
+			<div class="hero-actions">
+				<button type="button" class="btn btn-ghost" id="journeyPrevBtn" data-testid="journey-prev-btn">
+					Previous
+				</button>
+				<button type="button" class="btn btn-primary" id="journeyNextBtn" data-testid="journey-next-btn">
+					Next
+				</button>
+				<button type="button" class="btn btn-primary" id="journeyFinishBtn" data-testid="journey-finish-btn" hidden>
+					Finish and Redirect
+				</button>
+			</div>
+		</form>
+	</section>
+
+	<section class="panel split-panel">
+		<div>
+			<h2>Assertions to try</h2>
+			<ul class="check-grid">
+				<li>Step 2 should not open when Step 1 required fields are empty.</li>
+				<li>Step pills should update class is-active on navigation.</li>
+				<li>Finish should redirect to /result?source=journey-lab.</li>
+			</ul>
+		</div>
+		<div class="quote-box">
+			<p>Use Playwright locators by role and data-testid for stable wizard automation.</p>
+		</div>
+	</section>
+</main>
+
+<footer class="site-footer">
+	<p>Playwright Practice Platform <%= launchYear %>. Journey flow ready for automation.</p>
+</footer>

@@ -1,0 +1,27 @@
+<main class="frame-shell reveal">
+	<p class="eyebrow">Iframe Widget Lab</p>
+	<h1 data-testid="widget-heading">Embedded Dynamic Panel</h1>
+
+	<div class="frame-stats">
+		<article>
+			<span>Runs Today</span>
+			<strong data-testid="widget-runs"><%= testsToday %></strong>
+		</article>
+		<article>
+			<span>Pass Rate</span>
+			<strong data-testid="widget-pass-rate"><%= passRate %></strong>
+		</article>
+		<article>
+			<span>Next Task</span>
+			<strong data-testid="widget-task"><%= nextDrill %></strong>
+		</article>
+	</div>
+
+	<p class="small-note" id="widgetStatus" data-testid="widget-status">
+		Press refresh to call flaky ping and update this message.
+	</p>
+
+	<button class="btn btn-primary" id="refreshFrameBtn" type="button">
+		Refresh Widget State
+	</button>
+</main>

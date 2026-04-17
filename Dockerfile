@@ -5,14 +5,16 @@ WORKDIR /app
 
 # Install deps first for better layer caching
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 # Copy app
-COPY . .
+COPY --chown=node:node . .
 
 ENV NODE_ENV=production
 ENV PORT=3000
 EXPOSE 3000
+
+USER node
 
 # Optional: basic healthcheck (works in Docker; K8s uses probes)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 \
